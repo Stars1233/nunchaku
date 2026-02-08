@@ -12,7 +12,7 @@ jobs:
     steps:
       - name: Clone private repository
         run: |
-          git clone https://x-access-token:${{ secrets.GH_TOKEN }}@github.com/nunchaku-ai/nunchaku-dev.git
+          git clone -b oss https://x-access-token:${{ secrets.GH_TOKEN }}@github.com/nunchaku-ai/nunchaku-dev.git
       - name: Add public remote and fetch
         run: |
           cd nunchaku-dev
@@ -86,7 +86,7 @@ jobs:
           done
 
           git commit --amend --allow-empty -m "$NEW_MSG" --author="$GIT_AUTHOR_NAME <$GIT_AUTHOR_EMAIL>"
-      - name: Push to the private main branch
+      - name: Push to the private oss branch
         run: |
           cd nunchaku-dev
-          git push
+          git push origin oss
